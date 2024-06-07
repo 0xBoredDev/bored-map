@@ -17,7 +17,6 @@ type Chapter = {
   speed?: number;
 };
 
-
 const chapters: Record<string, Chapter> = {
   bored: {
     bearing: 0,
@@ -64,9 +63,9 @@ const markersData = [
 const Homepage = () => {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const mainRef = useRef<HTMLDivElement | null>(null);
-
   const [spinEnabled, setSpinEnabled] = useState(true);
-
+  const [email, setEmail] = useState("");
+  const [hasJoined, setHasJoined] = useState(false);
   const map = useRef<mapboxgl.Map | null>(null);
   const [lat] = useState(48);
   const [lng] = useState(2);
@@ -155,6 +154,14 @@ const Homepage = () => {
     setSpinEnabled((prev) => !prev);
   };
 
+  const submitEmail = async (formData: any) => {
+    // const email = formData.get("email");
+    const res = await fetch('/api/add-email', {
+      method: 'POST',
+      body: formData
+    });
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-4 md:p-24">
       <div
@@ -236,16 +243,20 @@ const Homepage = () => {
           <div className="w-half border-2 border-[#EC4B28] bg-black bg-opacity-40 font-bold text-[#EC4B28] rounded-lg p-8 text-center">
             <div className="uppercase">Get notified on launch</div>
             <div>
-              <form>
-                <div className="flex flex-col md:flex-row gap-2 pt-4 ">
+              <form action={submitEmail}>
+                <div className="flex flex-col md:flex-row gap-2 pt-4">
                   <input
-                    className="w-full rounded-lg p-2 border-[#EC4B28] border-2 bg-transparent"
+                    className="w-full rounded-lg p-2 border-[#EC4B28] border-2 bg-transparent disabled:disabled:border-slate-500"
                     type="email"
+                    id="email"
                     required
                     placeholder="Email"
-                    value=""
+                    name="email"
+                    onChange={(e)=>setEmail(e.target.value)}
+                    value={email}
+                    disabled={hasJoined}
                   />
-                  <button type="submit">Join</button>
+                  <button type="submit" disabled={hasJoined} className="disabled:disabled:text-slate-500">Join</button>
                 </div>
               </form>
             </div>
