@@ -154,12 +154,21 @@ const Homepage = () => {
     setSpinEnabled((prev) => !prev);
   };
 
-  const submitEmail = async (formData: any) => {
-    // const email = formData.get("email");
-    const res = await fetch('/api/add-email', {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const res = await fetch('/api/submit-email', {
       method: 'POST',
-      body: formData
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
     });
+
+    if (res.ok) {
+      setHasJoined(true);
+    } else {
+      alert('Error submitting email.');
+    }
   };
 
   return (
@@ -243,7 +252,7 @@ const Homepage = () => {
           <div className="w-half border-2 border-[#EC4B28] bg-black bg-opacity-40 font-bold text-[#EC4B28] rounded-lg p-8 text-center">
             <div className="uppercase">Get notified on launch</div>
             <div>
-              <form action={submitEmail}>
+            <form onSubmit={handleSubmit}>                
                 <div className="flex flex-col md:flex-row gap-2 pt-4">
                   <input
                     className="w-full rounded-lg p-2 border-[#EC4B28] border-2 bg-transparent disabled:disabled:border-slate-500"
@@ -256,7 +265,7 @@ const Homepage = () => {
                     value={email}
                     disabled={hasJoined}
                   />
-                  <button type="submit" disabled={hasJoined} className="disabled:disabled:text-slate-500">Join</button>
+                  <button type="submit" disabled={hasJoined} className="disabled:disabled:text-slate-500">{hasJoined ? "Joined!" : "Join"}</button>
                 </div>
               </form>
             </div>
