@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { email } = req.body;
 
     try {
-      await prisma.email.create({
+      await prisma.emails.create({
         data: { address: email },
       });
       res.status(200).json({ message: 'Email stored successfully' });

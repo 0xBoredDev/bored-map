@@ -14,6 +14,11 @@ Then, run the development server:
 pnpm dev
 ```
 
+We use prisma for orm postgres 
+https://www.prisma.io/docs/orm/prisma-migrate/getting-started
+
+pnpm dlx prisma
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
