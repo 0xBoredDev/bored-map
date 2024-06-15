@@ -233,22 +233,18 @@ const Homepage = () => {
           className="min-h-screen snap-always snap-center flex pb-32 md:pb-none items-end md:items-center justify-center w-full"
           id="register"
         >
-          <div className="w-half border-2 border-[#EC4B28] bg-black bg-opacity-40 font-bold text-[#EC4B28] rounded-lg p-8 text-center">
+          <div className="w-half md:w-1/2  border-2 border-[#EC4B28] bg-black bg-opacity-40 font-bold text-[#EC4B28] rounded-lg p-8 text-center flex flex-col gap-4">
             <div className="uppercase">Get notified on launch</div>
-            <div>
-              <form>
-                <div className="flex flex-col md:flex-row gap-2 pt-4 ">
-                  <input
-                    className="w-full rounded-lg p-2 border-[#EC4B28] border-2 bg-transparent"
-                    type="email"
-                    required
-                    placeholder="Email"
-                    value=""
-                  />
-                  <button type="submit">Join</button>
-                </div>
-              </form>
-            </div>
+            <a href="https://x.com/BoredMap">
+              <div className="text-sm">
+                Click to follow the official @BoredMap X page
+              </div>
+            </a>
+            <a href="https://x.com/BoredMap">
+              <div className="flex justify-center">
+                <img className="w-1/4" src="/xlogo.webp"></img>
+              </div>
+            </a>
           </div>
         </div>
       </div>
