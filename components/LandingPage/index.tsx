@@ -249,7 +249,7 @@ const Homepage = () => {
           className="min-h-screen snap-always snap-center flex pb-32 md:pb-none items-end md:items-center justify-center w-full"
           id="register"
         >
-          <div className="w-half border-2 border-[#EC4B28] bg-black bg-opacity-40 font-bold text-[#EC4B28] rounded-lg p-8 text-center">
+          <div className="w-half md:w-1/2  border-2 border-[#EC4B28] bg-black bg-opacity-40 font-bold text-[#EC4B28] rounded-lg p-8 text-center flex flex-col gap-4">
             <div className="uppercase">Get notified on launch</div>
             <div>
             <form onSubmit={handleSubmit}>                
